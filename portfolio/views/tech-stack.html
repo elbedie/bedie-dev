@@ -1,0 +1,19 @@
+<div class="tech-layout">
+  <section class="skills">
+    <p class="meta">Escolha um item para ver a descrição</p>
+    <div ng-repeat="category in ['Backend','Frontend','Database','Ferramentas']">
+      <h3>{{category}}</h3>
+      <div class="skill-grid">
+        <button class="skill" ng-repeat="skill in vm.getSkillsByCategory(category)" ng-click="vm.selectSkill(skill)" ng-class="{'selected': vm.selectedSkill.name === skill.name}">
+          <img ng-src="{{skill.icon}}" alt="{{skill.name}}"><span>{{skill.name}}</span>
+        </button>
+      </div>
+    </div>
+  </section>
+  <aside class="skill-detail" ng-if="vm.selectedSkill">
+    <img ng-src="{{vm.selectedSkill.icon}}" alt="" style="width:54px;height:54px">
+    <h3>{{vm.selectedSkill.name}}</h3>
+    <p class="meta">{{vm.selectedSkill.category}} • {{vm.selectedSkill.level}}</p>
+    <p style="font-size:12px;line-height:1.5;color:#444">{{vm.selectedSkill.description}}</p>
+  </aside>
+</div>

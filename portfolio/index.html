@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR" ng-app="portfolioApp">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diego David | Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body ng-controller="DesktopController as vm">
+  <main class="desktop" ng-click="vm.closeStart($event)">
+    <div class="wallpaper"><div class="cloud cloud-a"></div><div class="cloud cloud-b"></div><div class="cloud cloud-c"></div><div class="grid-overlay"></div></div>
+
+    <section class="desktop-icons">
+      <button class="desktop-icon" ng-repeat="icon in vm.desktopIcons" ng-dblclick="vm.openIcon(icon)" ng-click="$event.stopPropagation(); vm.selectIcon(icon.id)" ng-class="{'selected': vm.selectedIcon === icon.id}">
+        <img ng-src="{{icon.icon}}" alt="" />
+        <span>{{icon.label}}</span>
+      </button>
+    </section>
+
+    <section class="window-layer">
+      <article class="xp-window" ng-repeat="win in vm.windows" ng-if="win.open && !win.minimized" ng-style="{'left': win.x + 'px', 'top': win.y + 'px', 'width': win.width + 'px', 'height': win.height + 'px', 'z-index': win.z}" ng-mousedown="vm.focus(win)">
+        <header class="window-titlebar" ng-mousedown="vm.startDrag($event, win)">
+          <div class="window-title"><img ng-src="{{win.icon}}" alt="" /> <span>{{win.title}}</span></div>
+          <div class="window-actions">
+            <button ng-click="$event.stopPropagation(); vm.minimize(win)">_</button>
+            <button ng-click="$event.stopPropagation(); vm.close(win)">×</button>
+          </div>
+        </header>
+        <div class="window-body" ng-include="win.template"></div>
+      </article>
+    </section>
+
+    <nav class="start-menu" ng-if="vm.startOpen" ng-click="$event.stopPropagation()">
+      <div class="start-header"><img src="assets/img/avatar-icon.png" alt="" /><strong>Diego David</strong></div>
+      <button ng-repeat="item in vm.menuItems" ng-click="vm.openWindow(item.id); vm.startOpen=false"><img ng-src="{{item.icon}}" alt="" /> {{item.label}}</button>
+      <a href="https://www.linkedin.com/in/diego-david-600608199/" target="_blank"><img src="assets/img/ie-icon.png" alt="" /> LinkedIn</a>
+    </nav>
+
+    <footer class="taskbar">
+      <button class="start-button" ng-class="{'active': vm.startOpen}" ng-click="$event.stopPropagation(); vm.toggleStart()">start</button>
+      <div class="taskbar-windows">
+        <button ng-repeat="win in vm.windows | filter:{open:true}" ng-click="vm.restore(win)" ng-class="{'active': !win.minimized}"><img ng-src="{{win.icon}}" alt="" /> {{win.title}}</button>
+      </div>
+      <div class="clock">{{vm.clock}}</div>
+    </footer>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="main" style="padding:0;display:flex;flex-direction:column">
+    <div class="toolbar"><button>Arquivo</button><button>Editar</button><button>Ver</button><button>Favoritos</button><button>Ferramentas</button><button>Ajuda</button></div>
+    <div class="addressbar"><span>Endereço</span><div class="addressbox">C:\Documents and Settings\Diego David\Meus Documentos\Projetos</div></div>
+    <div class="project-list">
+      <div class="project-head"><span></span><span>Nome</span><span>Tipo</span><span>Data</span></div>
+      <div class="project-row" ng-repeat="project in vm.projects" ng-click="vm.selectProject(project)" ng-class="{'selected': vm.selectedProject.id === project.id}">
+        <span>{{project.icon === 'folder' ? '📁' : '📄'}}</span><span>{{project.name}}</span><span>{{project.type}}</span><span>{{project.date}}</span>
+      </div>
+    </div>
+    <div class="statusbar"><span>{{vm.projects.length}} objeto(s)</span><span ng-if="vm.selectedProject">1 item selecionado</span></div>
+  </div>
+  <aside class="detail-pane" ng-if="vm.selectedProject">
+    <h3>{{vm.selectedProject.name}}</h3>
+    <p class="meta">{{vm.selectedProject.type}} • {{vm.selectedProject.date}}</p>
+    <p style="font-size:12px;line-height:1.5;color:#444">
+  {{vm.selectedProject.description}}
+</p>
+<button
+  ng-if="vm.selectedProject.link"
+  ng-click="vm.openRepository(vm.selectedProject.link)"
+  style="
+    margin-top:10px;
+    padding:4px 10px;
+    font-size:12px;
+    cursor:pointer;
+  ">
+  Abrir repositório
+</button>
+    <div class="chips"><span class="chip" ng-repeat="tech in vm.selectedProject.tech">{{tech}}</span></div>
+  </aside>
+</div>
