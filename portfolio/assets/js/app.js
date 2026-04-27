@@ -74,6 +74,17 @@
           tech: ['C#', 'ASP.NET MVC', 'JWT', 'Azure'],
           icon: 'file',
           link: 'https://github.com/elbedie'
+        },
+        {
+          id: 5,
+          name: 'SIMC — Sensor de Batimento Cardíaco',
+          type: 'Sistema Embarcado',
+          date: '2024',
+          description:
+            'Sensor de monitoramento de frequência cardíaca desenvolvido com Arduino e C++. O sistema capta sinais de um sensor de pulso e calcula os batimentos por minuto (BPM) em tempo real.',
+          tech: ['Arduino', 'C++', 'Sensor MAX30100', 'IoT'],
+          icon: 'folder',
+          link: 'https://github.com/elbedie/Projeto-SD-IC'
         }
       ];
 
