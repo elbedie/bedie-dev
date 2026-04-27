@@ -110,7 +110,7 @@
 
       vm.openIcon = function (icon) {
         if (icon.external) {
-          window.open('https://www.linkedin.com/in/diego-david-600608199/', '_blank');
+          window.open('https://www.linkedin.com/in/diego-Xavier-600608199/', '_blank');
           return;
         }
         vm.openWindow(icon.id);
