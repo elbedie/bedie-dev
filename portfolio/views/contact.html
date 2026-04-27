@@ -4,7 +4,7 @@
     <div class="success" ng-if="vm.sent">
       <div class="success-icon">✓</div>
       <h2>Mensagem registrada</h2>
-      <p class="meta">Este formulário é visual. Para contato real, use e-mail ou LinkedIn.</p>
+      <p class="meta">Mensagem enviada com sucesso. Responderei em breve.</p>
     </div>
     <div ng-if="!vm.sent">
       <h2 style="font-family:'Pixelify Sans',sans-serif;margin-top:0">Contato</h2>
@@ -14,9 +14,9 @@
         <p>LinkedIn: <a href="https://www.linkedin.com/in/diego-david-600608199/" target="_blank">linkedin.com/in/diego-david-600608199</a></p>
       </div>
       <form class="contact-form" ng-submit="vm.sendMessage()">
-        <label>Nome</label><input ng-model="vm.form.name" placeholder="Seu nome">
-        <label>Email</label><input type="email" ng-model="vm.form.email" placeholder="seu@email.com">
-        <label>Mensagem</label><textarea ng-model="vm.form.message" placeholder="Escreva sua mensagem aqui..."></textarea>
+        <label>Nome</label><input ng-model="vm.form.name" placeholder="Seu nome" required> 
+        <label>Email</label><input type="email" ng-model="vm.form.email" placeholder="seu@email.com" required>
+        <label>Mensagem</label><textarea ng-model="vm.form.message" placeholder="Escreva sua mensagem aqui..." required></textarea>
         <div><button class="primary" type="submit">Enviar</button> <button class="secondary" type="button" ng-click="vm.clearForm()">Limpar</button></div>
       </form>
     </div>

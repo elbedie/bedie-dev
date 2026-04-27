@@ -132,8 +132,37 @@
       vm.selectSkill = function (skill) { vm.selectedSkill = skill; };
 
       vm.sendMessage = function () {
-        vm.sent = true;
-        vm.form = { name: '', email: '', message: '' };
+
+        var templateParams = {
+          name: vm.form.name,
+          email: vm.form.email,
+          message: vm.form.message
+        };
+
+        emailjs.send(
+          "service_c4q67il",
+          "template_zizii3h",
+          templateParams
+        ).then(function (response) {
+
+          console.log("Email enviado!", response.status, response.text);
+
+          vm.sent = true;
+
+          vm.form = {
+            name: '',
+            email: '',
+            message: ''
+          };
+
+        }, function (error) {
+
+          console.error("Erro ao enviar email:", error);
+
+          alert("Erro ao enviar mensagem. Tente novamente.");
+
+        });
+
       };
       vm.clearForm = function () { vm.form = { name: '', email: '', message: '' }; };
 
